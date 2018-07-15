@@ -3,7 +3,8 @@ var mapCountryPopulationGdp = require('./countrymapcreator');
 console.log(mapCountryPopulationGdp.entries());
 let gdpMap = new Map();
 let popMap = new Map();
-mapCountryPopulationGdp.forEach(function(value,key){
+mapCountryPopulationGdp.forEach(calculate);
+function calculate(value) {
     console.log(value[1]);
     if(popMap.has(value[2])){
         popMap.set(value[2],parseFloat(popMap.get(value[2]))+parseFloat(value[0]));
@@ -15,6 +16,9 @@ mapCountryPopulationGdp.forEach(function(value,key){
     } else {
         gdpMap.set(value[2],parseFloat(value[1]));
     }
-});
+}
 console.log(popMap.entries());
 console.log(gdpMap.entries());
+
+module.exports.gdpMap = gdpMap;
+module.exports.popMap = popMap;
